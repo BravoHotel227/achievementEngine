@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css"> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">           
+    </head>  
+    <body class="homepage">
+        <div id="title-bar">
+            <div id="title-bar-btns">
+                <button id="log-out">&#x2699;</button>
+                <button id="min-btn">&#x1f5d5;</button>
+                <button id="max-btn">&#x1f5d6;</button>
+                <button id="close-btn">&#x2716;</button>    
+            </div>
+        </div>
+        <div id="gameScroll" class="gameScroll">
+            <div class="searchGame">
+                <div class="box">
+                    <i class="fas fa-search" style"color:white"></i>
+                    <input type="text" name="search" id="gameSearchField" class="gameSearchField" onkeyup="searchFunction()">
+                    <i id="plus" class="fas fa-plus" style="color:white" onclick="addGame()"></i>
+                </div>
+            </div>
+            <div class="scrollbar" id="style-1">
+                <ul id="list">
+                    <li>
+                        <button id="show-content">show</button>
+                    </li>
+                </ul>  
+                <div class="force-overflow"></div>      
+            </div>
+        </div>
+        <div id="hidd-content" class="content">
+            <button id="launch-app">launch game</button>
+        </div>
+        
+        <script src="homepage.js"></script>
+    </body>
+</html>

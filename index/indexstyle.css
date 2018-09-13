@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.loginPage {
+	padding: 0px;
+	margin: 0px;
+ 	background-color: #2D2D30;
+	border: 1px solid #2D2D30;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+}
+#title-bar {
+	-webkit-app-region: drag;
+ 	height: 30px; 
+ 	padding: 0px;
+ 	margin: 0px; 
+    color: #ADADAD;
+    background-color: #2D2D30;
+    font-family: sans-serif;
+    
+
+}
+#title-bar-btns {
+	-webkit-app-region: no-drag;
+	position: fixed;
+	top: 1px;
+	right: 0px; 
+}
+#title-bar-btns button {
+	height: 30px;
+	width: 25px;
+	background-color: transparent;
+	border: none;
+	color: #F1F1F1;
+    font-size: 16px;
+    text-align: center;
+}
+#title-bar-btns button:hover {
+	background-color: #3F3F41;
+}
+.trophy{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+#loginbox{
+    width: 200px;
+    height: 300px;
+    background-color: #2D2D31;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+p{
+    padding: 0;
+    margin: 0;
+    font-weight: bold;    
+}
+input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+input[type=text], input[type="password"]{
+    border: none;
+    color: white;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+}
+.sqlconnect{
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #666666;
+    color: #fff;
+    font-size: 18px;
+}
+.sqlconnect:hover{
+    cursor: pointer;
+    background: #ADADAD
+}
+a{
+    color: #666666;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: rgb(145, 145, 145)
+}
+a:hover{
+    color:#ADADAD
+}
+#forgotPass{
+    background: none;
+    border: none;
+    font-size: 14px;
+    padding-bottom: 10px;
+    color:#9a9899;
+    text-decoration: underline;
+}
+#forgotPass:hover{
+    cursor: pointer;
+    color: #ffffff;   
+}
+#createAcc{
+    background: none;
+    border: none;
+    font-size: 14px;
+    color:#9a9899;
+    text-decoration: underline;
+}
+#createAcc:hover{
+    cursor: pointer;
+    color: #ffffff;
+}
