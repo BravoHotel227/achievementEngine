@@ -56,7 +56,7 @@ function searchFunction(){                                        // function to
 
 function addGame(){
   const addGamePath = path.join('file://',__dirname, 'addGame/addGame.html');              // creating the new window
-  let add = new BrowserWindow({ width: 450, height: 300, frame: false});
+  let add = new BrowserWindow({ width: 400, height: 350, frame: false});
   add.on('close', function () {win = null });
   add.loadURL(addGamePath);
   add.show();
