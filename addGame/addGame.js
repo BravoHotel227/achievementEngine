@@ -28,4 +28,3 @@ document.getElementById("input-game").addEventListener("click", function(e){
   })
   connection.end();
 }, false);  
-
