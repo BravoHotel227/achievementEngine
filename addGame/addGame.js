@@ -9,7 +9,6 @@ document.getElementById("close-btn").addEventListener("click", function (e) {   
     const window = remote.getCurrentWindow();
     window.close();
   }); 
-debug.log("hellow");
 
 document.getElementById("input-game").addEventListener("click", function(e){
   var mysql = require('mysql');               // require the mysql module and asign it to the variable 
