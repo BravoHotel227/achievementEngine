@@ -3,7 +3,7 @@ const path = require('path');
 const BrowserWindow = electron.remote.BrowserWindow;
 const loginbtn = document.querySelector('.login-btn');
 const remote = require('electron').remote;
-const {shell} = require('electron')
+const {shell, ipcRenderer} = electron
 
   document.getElementById("min-btn").addEventListener("click", function (e) {   // function to minimize the window
     const window = remote.getCurrentWindow();
@@ -23,6 +23,8 @@ function createHomePage() {                                                   //
   homepagewin.openDevTools() 
   const window = remote.getCurrentWindow();
   window.close();
+
+
 }
 
 document.getElementById("forgotPass").addEventListener("click", function (e) {  // link to external website
@@ -30,4 +32,13 @@ document.getElementById("forgotPass").addEventListener("click", function (e) {  
 })
 document.getElementById("createAcc").addEventListener("click", function (e) {   // link to external website
   shell.openExternal('https://google.com');  
+})
+
+document.getElementById("test").addEventListener("click", () =>{
+  var t = "test";
+  ipcRenderer.send("test-data", t);
+});
+
+ipcRenderer.on('test2', (event, arg) => {
+  console.log(arg);
 })

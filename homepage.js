@@ -1,9 +1,9 @@
 const electron = require('electron');                 // require all the models needed and assigning them variables 
 const path = require('path');
 const BrowserWindow = electron.remote.BrowserWindow;
-const loginbtn = document.querySelector('.login-btn');
+//const loginbtn = document.querySelector('.login-btn');
 const remote = require('electron').remote;
-const {shell, app} = require('electron')
+const {shell, app, ipcRenderer} = electron;
       
 document.getElementById("log-out").addEventListener("click", function (e) {     // function to log user out and send them back to the login page
   const logoutpath = path.join('file://',__dirname, 'index/index.html');              // creating the new window
@@ -38,6 +38,8 @@ var steamLink = "E:\\SteamLibrary\\steamapps\\common\\"                         
 document.getElementById("launch-app").addEventListener("click", function (e) {
   shell.openItem( steamLink + "No Man's Sky\\Binaries\\NMS.exe"); 
 });*/
+//ipcRenderer.on('recieveName', (event, name) => {
+//console.log(name);
 
 function searchFunction(){                                        // function to search the game library 
   var input, filter, ul, li, a, i;
@@ -73,15 +75,15 @@ document.getElementById("show-content").addEventListener("click", function(e){  
   }
 })
 
-/*
+
 function loadgamelist(){
 getFirstTenRows(function(rows){
   var html = '';
 
   rows.forEach(function(row){
-      html += '<li>';
+    html += '</li>'
       html += row.gamename;
-      html += '</li>';
+      html += '<li>';
       console.log(row);
   });
 
@@ -95,23 +97,26 @@ var mysql = require('mysql');               // require the mysql module and asig
 var connection = mysql.createConnection({   // creating the connection with the database 
   host: '127.0.0.1',
   user: 'root',
-  password: '',
+  password: 'csit115',
   database: 'achievement',
   multipleStatements: true
 });
 
 connection.connect();
 
-$query = 'SELECT `gamename` FROM gamepaths';
+$query = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
 connection.query($query, function(err, rows, fields){
   if(err){
     console.log("An error ocurred performing the query");
     console.log(err);
     return;
  }
- callback(rows);
+ if(name = result[0].username){
+  callback(rows);
   console.log("success");
+ }
 });
 connection.end();
 }  
-*/
+
+//});
