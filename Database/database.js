@@ -1,15 +1,16 @@
 // script to connect to database and run the user authitcation for login
 document.querySelector('.sqlconnect').addEventListener("click", () => { 
-/*   var name = document.getElementById('username').value;                             // getting the users input from the login fields
+   var name = document.getElementById('username').value;                             // getting the users input from the login fields
 var passwords = document.getElementById('lastname').value;
     if(name == "Bob" )                                          // compare the users input to the result
     {
         if(passwords == "Bobby")                                   // compare the users input to the result
         {
-            createHomePage();                                                  // create the home page 
+            createHomePage();                                           // create the home page 
+            ipcRenderer.send('userLoggedIn', (event, name));
         }
     } 
-*/
+/*
 var mysql = require('mysql');               // require the mysql module and asign it to the variable 
 const {ipcRenderer} = require('electron');
 var connection = mysql.createConnection({   // creating the connection with the database 
@@ -41,5 +42,5 @@ connection.query($sql, [name, passwords], function (error, results, fields) {   
         console.log("An error ocurred");
     }
 });
-connection.end();                                                                 // end the connection 
+connection.end();  */                                                               // end the connection 
 }, false);

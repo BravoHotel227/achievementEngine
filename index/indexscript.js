@@ -14,17 +14,8 @@ const {shell, ipcRenderer} = electron
     window.close();
     }); 
 
-function createHomePage() {                                                   // function to create the home page 
-  const homepath = path.join('file://',__dirname, '../homepage.html');
-  let homepagewin = new BrowserWindow({ width: 1000, height: 800, frame: false});
-  homepagewin.on('close', function () {homepagewin = null });
-  homepagewin.loadURL(homepath);
-  homepagewin.show();
-  homepagewin.openDevTools() 
-  const window = remote.getCurrentWindow();
-  window.close();
-
-
+function createHomePage() {                                                 // function to create the home page 
+  ipcRenderer.send('openHomePage');
 }
 
 document.getElementById("forgotPass").addEventListener("click", function (e) {  // link to external website

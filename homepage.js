@@ -1,18 +1,9 @@
 const electron = require('electron');                 // require all the models needed and assigning them variables 
-const path = require('path');
-const BrowserWindow = electron.remote.BrowserWindow;
-//const loginbtn = document.querySelector('.login-btn');
 const remote = require('electron').remote;
-const {shell, app, ipcRenderer} = electron;
+const {shell, ipcRenderer} = electron;
       
 document.getElementById("log-out").addEventListener("click", function (e) {     // function to log user out and send them back to the login page
-  const logoutpath = path.join('file://',__dirname, 'index/index.html');              // creating the new window
-  let logout = new BrowserWindow({ width: 400, height: 500, frame: false});
-  logout.on('close', function () {logout = null });
-  logout.loadURL(logoutpath);
-  logout.show();
-  const window = remote.getCurrentWindow();
-  window.close();
+  ipcRenderer.send('logout');
 });
 
 document.getElementById("min-btn").addEventListener("click", function (e) {     // function to minimize the window
@@ -57,14 +48,9 @@ function searchFunction(){                                        // function to
 }
 
 function addGame(){
-  const addGamePath = path.join('file://',__dirname, 'addGame/addGame.html');              // creating the new window
-  let add = new BrowserWindow({ width: 400, height: 350, frame: false});
-  add.on('close', function () {win = null });
-  add.loadURL(addGamePath);
-  add.show();
-  add.openDevTools();
-  const window = remote.getCurrentWindow();
+  ipcRenderer.send('openAddGame');
 }
+
 document.getElementById("show-content").addEventListener("click", function(e){            // function to show the middle content when a button in the scroll area is pressed
   var x = document.getElementById("hidd-content");
   if(x.style.display === "none"){
@@ -119,4 +105,8 @@ connection.query($query, function(err, rows, fields){
 connection.end();
 }  
 
+
+ipcRenderer.on('userLoggedIn', (event, name) => {
+  console.log(name);
+})
 //});
