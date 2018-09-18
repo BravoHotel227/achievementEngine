@@ -1,7 +1,8 @@
 const electron = require('electron');                 // require all the models needed and assigning them variables 
 const remote = require('electron').remote;
 const {shell, ipcRenderer} = electron;
-      
+var userName;                                         // name of the user that has logged in
+
 document.getElementById("log-out").addEventListener("click", function (e) {     // function to log user out and send them back to the login page
   ipcRenderer.send('logout');
 });
@@ -61,6 +62,10 @@ document.getElementById("show-content").addEventListener("click", function(e){  
   }
 })
 
+ipcRenderer.on('userLoggedIn', (event, name) => {
+  console.log(name);
+  userName = name;
+})
 
 function loadgamelist(){
 getFirstTenRows(function(rows){
@@ -105,8 +110,4 @@ connection.query($query, function(err, rows, fields){
 connection.end();
 }  
 
-
-ipcRenderer.on('userLoggedIn', (event, name) => {
-  console.log(name);
-})
 //});

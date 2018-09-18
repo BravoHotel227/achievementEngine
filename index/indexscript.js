@@ -25,11 +25,9 @@ document.getElementById("createAcc").addEventListener("click", function (e) {   
   shell.openExternal('https://google.com');  
 })
 
+/*
 document.getElementById("test").addEventListener("click", () =>{
   var t = "test";
   ipcRenderer.send("test-data", t);
 });
-
-ipcRenderer.on('test2', (event, arg) => {
-  console.log(arg);
-})
+*/
