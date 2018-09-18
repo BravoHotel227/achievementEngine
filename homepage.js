@@ -1,7 +1,7 @@
 const electron = require('electron');                 // require all the models needed and assigning them variables 
 const remote = require('electron').remote;
 const {shell, ipcRenderer} = electron;
-var userName;                                         // name of the user that has logged in
+var userN;                                         // name of the user that has logged in
 
 document.getElementById("log-out").addEventListener("click", function (e) {     // function to log user out and send them back to the login page
   ipcRenderer.send('logout');
@@ -48,10 +48,6 @@ function searchFunction(){                                        // function to
   }
 }
 
-function addGame(){
-  ipcRenderer.send('openAddGame');
-}
-
 document.getElementById("show-content").addEventListener("click", function(e){            // function to show the middle content when a button in the scroll area is pressed
   var x = document.getElementById("hidd-content");
   if(x.style.display === "none"){
@@ -64,8 +60,15 @@ document.getElementById("show-content").addEventListener("click", function(e){  
 
 ipcRenderer.on('userLoggedIn', (event, name) => {
   console.log(name);
-  userName = name;
+  userN = name;
 })
+
+function addGame(){
+  ipcRenderer.send('openAddGame');
+  //console.log("test");
+  ipcRenderer.send('addGameUsername', (event, userN));
+}
+
 
 function loadgamelist(){
 getFirstTenRows(function(rows){
@@ -88,24 +91,25 @@ var mysql = require('mysql');               // require the mysql module and asig
 var connection = mysql.createConnection({   // creating the connection with the database 
   host: '127.0.0.1',
   user: 'root',
-  password: 'csit115',
+  password: '',
   database: 'achievement',
   multipleStatements: true
 });
 
 connection.connect();
 
-$query = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
-connection.query($query, function(err, rows, fields){
+//$query = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
+$sql = 'SELECT gamename, gamepath FROM gamepaths where username = "Bob"';
+connection.query($sql, [userN], function(err, rows, fields){
   if(err){
     console.log("An error ocurred performing the query");
     console.log(err);
     return;
  }
- if(name = result[0].username){
+ //if(userN = rows.username){
   callback(rows);
-  console.log("success");
- }
+  console.log();
+ //}
 });
 connection.end();
 }  

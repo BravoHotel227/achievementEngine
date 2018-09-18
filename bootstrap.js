@@ -46,6 +46,7 @@ function createWindow() {
 
     loginWin.openDevTools();
     homepageWin.openDevTools();
+    addgameWin.openDevTools();
 
     loginWin.on('close', () => {
         app.quit();
@@ -65,6 +66,9 @@ function createWindow() {
 
     ipcMain.on('openAddGame', (event) => {
         addgameWin.show();
+    })
+    ipcMain.on('addGameUsername', (event, userName) => {
+        addgameWin.webContents.send('addGameUsername', (event, userName));
     })
     ipcMain.on('openHomePage', (event) => {
         homepageWin.show();
