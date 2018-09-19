@@ -28,7 +28,7 @@ document.getElementById("max-btn").addEventListener("click", function (e) {     
      window.unmaximize();
   }	 
 });
-        
+      console.log("test");
 document.getElementById("close-btn").addEventListener("click", function (e) {   // function to close the window 
   const window = remote.getCurrentWindow();
   window.close();
