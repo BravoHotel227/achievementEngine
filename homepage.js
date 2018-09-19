@@ -2,6 +2,7 @@ const electron = require('electron');                 // require all the models 
 const remote = require('electron').remote;
 const {shell, ipcRenderer} = electron;
 var userN;                                         // name of the user that has logged in
+var pathName;
 
 document.getElementById("log-out").addEventListener("click", function (e) {     // function to log user out and send them back to the login page
   ipcRenderer.send('logout');
@@ -75,10 +76,10 @@ getFirstTenRows(function(rows){
   var html = '';
 
   rows.forEach(function(row){
-    html += '</li>'
-      html += row.gamename;
-      html += '<li>';
-      console.log(row);
+    html += '<input type = "button" value = ';
+    html += row.gamename;
+    html += '</button>';
+    console.log(row);
   });
 
   document.querySelector('#list > li').innerHTML = html;
@@ -86,12 +87,23 @@ getFirstTenRows(function(rows){
 }
 window.onload = loadgamelist;
 
+document.getElementById("test").addEventListener("click", function(e){
+  console.log('Test');
+  var x = document.getElementById("hidd-content");
+  if(x.style.display === "none"){
+    x.style.display = "block";
+  }
+  else{
+    x.style.display = "none";
+  }
+});
+
 function getFirstTenRows(callback){
 var mysql = require('mysql');               // require the mysql module and asign it to the variable 
 var connection = mysql.createConnection({   // creating the connection with the database 
   host: '127.0.0.1',
   user: 'root',
-  password: '',
+  password: 'csit115',
   database: 'achievement',
   multipleStatements: true
 });
@@ -108,10 +120,15 @@ connection.query($sql, [userN], function(err, rows, fields){
  }
  //if(userN = rows.username){
   callback(rows);
-  console.log();
+  pathName = rows[0].gamepath;
+  console.log(pathName);
  //}
 });
 connection.end();
 }  
+                       
+document.getElementById("launch-app").addEventListener("click", function (e) {        // function to launch games
+  shell.openItem( pathName); 
+});
 
 //});

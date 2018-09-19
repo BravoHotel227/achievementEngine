@@ -15,7 +15,13 @@ document.getElementById("close-btn").addEventListener("click", function (e) {   
 ipcRenderer.on('addGameUsername', (event, name) => {
   console.log(name);
   userName = name;
-})
+});
+
+function onreload(){
+  ipcRenderer.send('addGameUsername_reload', (event, userName));
+  console.log(userName);
+}
+window.onload = onreload;
 
 document.getElementById("input-game").addEventListener("click", function(e){
   
@@ -27,7 +33,7 @@ document.getElementById("input-game").addEventListener("click", function(e){
   var connection = mysql.createConnection({   // creating the connection with the database 
     host: '127.0.0.1',
     user: 'root',
-    password: '',
+    password: 'csit115',
     database: 'achievement',
     multipleStatements: true
   });
@@ -35,7 +41,7 @@ document.getElementById("input-game").addEventListener("click", function(e){
   connection.connect();
   var gameName = document.getElementById("game-name").value;
   var gamePath = inputpath
-  connection.query('INSERT INTO GamePaths SET ?', { username: userName, gamename: gameName, gamepath: gamePath}, function(error, results, fields){
+  connection.query('INSERT INTO GamePaths SET ?', { username: "Bob", gamename: gameName, gamepath: gamePath}, function(error, results, fields){
     if(error) throw error;
   })
   connection.end();

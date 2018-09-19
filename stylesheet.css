@@ -90,12 +90,12 @@ input[type=text]{
 	list-style-type: none;
 	color:#d3d3d3;
 }
-.scrollbar li{
+.scrollbar li li{
 	margin:5px 5px;
 	padding:5px;
 	cursor:pointer;
 }
-.scrollbar li:hover {
+.scrollbar li li:hover {
 	background-color:#36393e;
 }
 .force-overflow{

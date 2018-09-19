@@ -70,6 +70,9 @@ function createWindow() {
     ipcMain.on('addGameUsername', (event, userName) => {
         addgameWin.webContents.send('addGameUsername', (event, userName));
     })
+    ipcMain.on('addGameUsername_reload', (event, userName) => {
+        addgameWin.webContents.send('addGameUsername_reload', (event, userName));
+    })
     ipcMain.on('openHomePage', (event) => {
         homepageWin.show();
         loginWin.hide();
