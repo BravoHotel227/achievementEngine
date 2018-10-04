@@ -76,9 +76,9 @@ getFirstTenRows(function(rows){
   var html = '';
 
   rows.forEach(function(row){
-    html += '<input type = "button" value = ';
+    html += '<li>';
     html += row.gamename;
-    html += '</button>';
+    html += '</li>';
     console.log(row);
   });
 

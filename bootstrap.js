@@ -21,6 +21,12 @@ function createWindow() {
         frame: false,
         show: false
     })
+    webpageWin = new BrowserWindow({ 
+        width: 1000,
+        height: 800,
+        frame: false,
+        show: false
+    })
     addgameWin = new BrowserWindow({
         width:400,
         height:350,
@@ -38,15 +44,20 @@ function createWindow() {
         protocol: 'file',
         slashes: true
     }))
+    webpageWin.loadURL(url.format ({
+        pathname:path.join(__dirname, 'webpage/webpage.html'),
+        protocol: 'file',
+        slashes: true
+    }))
     addgameWin.loadURL(url.format ({
         pathname:path.join(__dirname, 'addGame/addGame.html'),
         protocol: 'file',
         slashes: true
     }))
 
-    loginWin.openDevTools();
-    homepageWin.openDevTools();
-    addgameWin.openDevTools();
+    //loginWin.openDevTools();
+    //homepageWin.openDevTools();
+    //addgameWin.openDevTools();
 
     loginWin.on('close', () => {
         app.quit();
@@ -63,6 +74,9 @@ function createWindow() {
     addgameWin.on('closed', () => {        // when the window is closed dereference win
         addgameWin = null;
     })  
+    webpageWin.on('closed', () => {        // when the window is closed dereference win
+        webpageWin = null;
+    })
 
     ipcMain.on('openAddGame', (event) => {
         addgameWin.show();
@@ -75,6 +89,7 @@ function createWindow() {
     })
     ipcMain.on('openHomePage', (event) => {
         homepageWin.show();
+        webpageWin.show();
         loginWin.hide();
     })
     ipcMain.on('logout', (event) => {
