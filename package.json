@@ -8,12 +8,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-linux": "electron-packager . Achievement-Engine --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
-    "package-win": "electron-packager . Achievement-Engine --overwrite --asar=true --platform=win32 --arch=ia32 --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Achievement Engine\""
+    "package-win": "electron-packager . Achievement-Engine --overwrite --asar=true --platform=win32 --arch=ia32 --icon=images/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Achievement Engine\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "electron-reload": "^1.2.5",
+    "electron-window-state": "^5.0.1",
     "mysql": "^2.16.0"
   },
   "devDependencies": {
