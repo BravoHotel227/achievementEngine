@@ -23,9 +23,6 @@ function createWindow() {
         y: winState.y,      // setting the last postion of the window
         frame: false,        // removing the frame of the window 
         resizable: false,
-        webPreferences:{
-            defaultFontFamily: sansSerif
-        }
     })
     homepageWin = new BrowserWindow({
         width: 1000, 
