@@ -76,14 +76,10 @@ getRows(function(rows){
   var html = '';
 
   rows.forEach(function(row){
-    html += '<input type = "button" value = ';
-    html += row.gamename + ' ';
-    html += '</button>';
-    console.log(row.gamename);
-
-   /// document.getElementById(row.gamename).addEventListener("click", function(e){
-    ///  console.log("test");
-   // })
+    html += '<li>';
+    html += row.gamename;
+    html += '</li>';
+    console.log(row);
   });
 
   document.querySelector('#list > li').innerHTML = html;

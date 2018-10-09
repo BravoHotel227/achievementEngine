@@ -1,6 +1,7 @@
 //declaring consts from the electron module
 const electron = require('electron')
-const{app, BrowserWindow, ipcMain} = electron
+const{app, BrowserWindow, ipcMain, session} = electron
+const windowStateKeeper = require('electron-window-state');
 //main process
 const path = require('path')
 const url = require('url')
@@ -10,23 +11,57 @@ let loginWin;
 let homepageWin;
 //function the create the window and set its varibles 
 function createWindow() {
+
+    let winState = windowStateKeeper({
+
+    });
+
     loginWin = new BrowserWindow({
         width: 400,         // setting the width of the window
-        height: 500,        // setting the height of the window 
-        frame: false        // removing the frame of the window 
+        height: 500,        // setting the height of the window
+        x: winState.x,      // setting the last postion of the window 
+        y: winState.y,      // setting the last postion of the window
+        frame: false,        // removing the frame of the window 
+        resizable: false,
     })
     homepageWin = new BrowserWindow({
         width: 1000, 
-        height: 800, 
+        height: 800,
+        x: winState.x,      // setting the last postion of the window 
+        y: winState.y,      // setting the last postion of the window 
         frame: false,
         show: false
-    })
+    })/*
+    webpageWin = new BrowserWindow({ 
+        width: 1000,
+        height: 800,
+        x: winState.x,      // setting the last postion of the window 
+        y: winState.y,      // setting the last postion of the window
+        frame: false,
+        show: false
+    })*/
     addgameWin = new BrowserWindow({
-        width:400,
-        height:350,
+        width:480,
+        height:370,
+        x: winState.x,      // setting the last postion of the window 
+        y: winState.y,      // setting the last postion of the window
         frame: false,
-        show: false
+        show: false,
+        resizable: false
     })
+
+    winState.manage(loginWin);                                // to allow the window state keeper to manage each window
+    winState.manage(homepageWin);
+    winState.manage(addgameWin);
+
+    // Session from new partition 
+    let appSession = session.fromPartition('partition1')
+
+    let defaultSession = session.defaultSession;
+    let mainSession = loginWin.webContents.session
+
+    console.log(mainSession);
+
     //loading the html for the window
     loginWin.loadURL(url.format({
         pathname:path.join(__dirname, 'index/index.html'),    // look for the path of the file
@@ -37,15 +72,20 @@ function createWindow() {
         pathname:path.join(__dirname, './homepage.html'),
         protocol: 'file',
         slashes: true
-    }))
+    }))/*
+    webpageWin.loadURL(url.format ({
+        pathname:path.join(__dirname, 'webpage/webpage.html'),
+        protocol: 'file',
+        slashes: true
+    }))*/
     addgameWin.loadURL(url.format ({
         pathname:path.join(__dirname, 'addGame/addGame.html'),
         protocol: 'file',
         slashes: true
     }))
 
-    loginWin.openDevTools();
-    homepageWin.openDevTools();
+    //loginWin.openDevTools();
+    //homepageWin.openDevTools();
     addgameWin.openDevTools();
 
     loginWin.on('close', () => {
@@ -62,7 +102,10 @@ function createWindow() {
     })
     addgameWin.on('closed', () => {        // when the window is closed dereference win
         addgameWin = null;
-    })  
+    })  /*
+    webpageWin.on('closed', () => {        // when the window is closed dereference win
+        webpageWin = null;
+    })*/
 
     ipcMain.on('openAddGame', (event) => {
         addgameWin.show();
@@ -75,6 +118,7 @@ function createWindow() {
     })
     ipcMain.on('openHomePage', (event) => {
         homepageWin.show();
+      //  webpageWin.show();
         loginWin.hide();
     })
     ipcMain.on('logout', (event) => {
