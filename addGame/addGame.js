@@ -33,7 +33,7 @@ document.getElementById("input-game").addEventListener("click", function(e){
   var connection = mysql.createConnection({   // creating the connection with the database 
     host: '127.0.0.1',
     user: 'root',
-    password: 'csit115',
+    password: '',
     database: 'achievement',
     multipleStatements: true
   });

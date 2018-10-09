@@ -72,21 +72,25 @@ function addGame(){
 
 
 function loadgamelist(){
-getFirstTenRows(function(rows){
+getRows(function(rows){
   var html = '';
 
   rows.forEach(function(row){
     html += '<input type = "button" value = ';
-    html += row.gamename;
+    html += row.gamename + ' ';
     html += '</button>';
-    console.log(row);
+    console.log(row.gamename);
+
+   /// document.getElementById(row.gamename).addEventListener("click", function(e){
+    ///  console.log("test");
+   // })
   });
 
   document.querySelector('#list > li').innerHTML = html;
 });
 }
 window.onload = loadgamelist;
-
+/*
 document.getElementById("test").addEventListener("click", function(e){
   console.log('Test');
   var x = document.getElementById("hidd-content");
@@ -96,14 +100,14 @@ document.getElementById("test").addEventListener("click", function(e){
   else{
     x.style.display = "none";
   }
-});
+});*/
 
-function getFirstTenRows(callback){
+function getRows(callback){
 var mysql = require('mysql');               // require the mysql module and asign it to the variable 
 var connection = mysql.createConnection({   // creating the connection with the database 
   host: '127.0.0.1',
   user: 'root',
-  password: 'csit115',
+  password: '',
   database: 'achievement',
   multipleStatements: true
 });
