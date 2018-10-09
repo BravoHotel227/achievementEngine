@@ -1,6 +1,6 @@
 //declaring consts from the electron module
 const electron = require('electron')
-const{app, BrowserWindow, ipcMain} = electron
+const{app, BrowserWindow, ipcMain, session} = electron
 const windowStateKeeper = require('electron-window-state');
 //main process
 const path = require('path')
@@ -21,7 +21,11 @@ function createWindow() {
         height: 500,        // setting the height of the window
         x: winState.x,      // setting the last postion of the window 
         y: winState.y,      // setting the last postion of the window
-        frame: false        // removing the frame of the window 
+        frame: false,        // removing the frame of the window 
+        resizable: false,
+        webPreferences:{
+            defaultFontFamily: sansSerif
+        }
     })
     homepageWin = new BrowserWindow({
         width: 1000, 
@@ -40,17 +44,26 @@ function createWindow() {
         show: false
     })*/
     addgameWin = new BrowserWindow({
-        width:400,
-        height:350,
+        width:480,
+        height:370,
         x: winState.x,      // setting the last postion of the window 
         y: winState.y,      // setting the last postion of the window
         frame: false,
-        show: false
+        show: false,
+        resizable: false
     })
 
     winState.manage(loginWin);                                // to allow the window state keeper to manage each window
     winState.manage(homepageWin);
     winState.manage(addgameWin);
+
+    // Session from new partition 
+    let appSession = session.fromPartition('partition1')
+
+    let defaultSession = session.defaultSession;
+    let mainSession = loginWin.webContents.session
+
+    console.log(mainSession);
 
     //loading the html for the window
     loginWin.loadURL(url.format({

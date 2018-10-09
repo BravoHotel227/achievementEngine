@@ -80,23 +80,23 @@ input[type=text], input[type="password"]{
     border: none;
     outline: none;
     height: 40px;
-    background: #666666;
+    background: #696969;
     color: #fff;
     font-size: 18px;
 }
 .sqlconnect:hover{
     cursor: pointer;
-    background: #ADADAD
+    background: #9f9f9f;
 }
 a{
-    color: #666666;
+    color: #696969;
     text-decoration: none;
     font-size: 16px;
     line-height: 18px;
-    color: rgb(145, 145, 145)
+    color: rgb(145, 145, 145);
 }
 a:hover{
-    color:#ADADAD
+    color:#9f9f9f;
 }
 #forgotPass{
     background: none;

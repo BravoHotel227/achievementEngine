@@ -4,13 +4,22 @@ const BrowserWindow = electron.remote.BrowserWindow;
 const loginbtn = document.querySelector('.login-btn');
 const remote = require('electron').remote;
 const {shell, app, ipcRenderer } = electron;
+const addwindow = remote.getCurrentWindow();
 var userName;
 
+document.getElementById("min-btn").addEventListener("click", function (e) {     // function to minimize the window
+  const window = remote.getCurrentWindow();
+  window.minimize(); 
+});
 
 document.getElementById("close-btn").addEventListener("click", function (e) {   // function to close the window 
-    const window = remote.getCurrentWindow();
-    window.hide();
-  }); 
+  addwindow.hide();
+}); 
+
+document.getElementById("cancel").addEventListener("click", function (e) {   // function to close the window 
+  addwindow.hide();
+  addwindow.reload();
+}); 
 
 ipcRenderer.on('addGameUsername', (event, name) => {
   console.log(name);
@@ -21,7 +30,15 @@ function onreload(){
   ipcRenderer.send('addGameUsername_reload', (event, userName));
   console.log(userName);
 }
-window.onload = onreload;
+addwindow.onload = onreload;
+
+document.addEventListener('DOMContentLoaded', function(){                             // function to show the filename after the user has selected the file
+	var file_select = document.getElementsByClassName('file_select')[0];
+	
+	file_select.addEventListener('change', function(){
+		this.nextElementSibling.setAttribute('data-file', this.value);
+	});
+});
 
 document.getElementById("input-game").addEventListener("click", function(e){
   
@@ -44,6 +61,7 @@ document.getElementById("input-game").addEventListener("click", function(e){
   connection.query('INSERT INTO GamePaths SET ?', { username: "Bob", gamename: gameName, gamepath: gamePath}, function(error, results, fields){
     if(error) throw error;
   })
+  addwindow.reload();
   connection.end();
 }, false);  
 

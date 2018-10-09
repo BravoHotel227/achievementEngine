@@ -6,15 +6,19 @@
     <body>
         <div id="title-bar">
             <div id="title-bar-btns">
+                <button id="min-btn">&#x1f5d5;</button>
                 <button id="close-btn">&#x2716;</button>    
             </div>
         </div>
         <p>Please enter the details for the game you wish to add.</p>
         <input type="text" id="game-name" placeholder="Enter game name...">
+        <label>
+            <input type="file" id="game-path" class="file_select"/>
+            <span data-file="">Choose file...</span>
+        </label>
         <br>
-        <input type="file" id="game-path" accept=".exe">  
-        
         <input type="button" id="input-game" value="Add">
+        <input type="button" id="cancel" value="Cancel">
         
 
         <script src="addGame.js"></script>
