@@ -121,3 +121,10 @@ a:hover{
     cursor: pointer;
     color: #ffffff;
 }
+#errorMessage-login{
+    font-style: italic;
+    color: #fff;
+    font-size: 12px;
+    display: none;
+    padding-top: 5px;
+}

@@ -11,8 +11,11 @@
             </div>
         </div>
         <p>Please enter the details for the game you wish to add.</p>
+        <div id="errorMessage-name">
+            Please enter a name...
+        </div>
         <input type="text" id="game-name" placeholder="Enter game name...">
-        <div id="errorMessage">
+        <div id="errorMessage-path">
             Please select a file...
         </div>
         <label>
@@ -20,8 +23,11 @@
             <span data-file="">Choose file...</span>
         </label>
         <br>
+        
         <input type="button" id="input-game" value="Add">
         <input type="button" id="cancel" value="Cancel">
+
+
         
 
         <script src="addGame.js"></script>

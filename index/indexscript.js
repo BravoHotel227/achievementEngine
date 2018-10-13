@@ -19,12 +19,20 @@ function createHomePage() {                                                 // f
 }
 
 document.getElementById("forgotPass").addEventListener("click", function (e) {  // link to external website
-  shell.openExternal('https://google.com');  
+  shell.openExternal('http://achievement-engine.com/website/register.php');  
 })
 document.getElementById("createAcc").addEventListener("click", function (e) {   // link to external website
-  shell.openExternal('https://google.com');  
+  shell.openExternal('http://achievement-engine.com/website/register.php');  
 })
 
+
+  window.addEventListener('online', () => {
+    console.log('User online');
+  })
+  
+  window.addEventListener('offline', () => {
+    console.log('User offline');
+  })
 /*
 document.getElementById("test").addEventListener("click", () =>{
   var t = "test";

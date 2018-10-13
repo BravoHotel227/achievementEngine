@@ -42,9 +42,8 @@ body{
     outline: none;
     height: 30px;
     width: 250px;
-	margin-top: 20px;
     margin-left: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 #game-name::placeholder{
     color:#a0a0a0;
@@ -58,8 +57,9 @@ body{
     background: #666666;
     color: #fff;
 	font-size: 18px;
-	margin-top: 140px;
-	margin-left: 10px;
+	margin-top: 120px;
+    margin-left: 10px;
+    margin-top: 100px;
 }
 #input-game:hover{
     cursor: pointer;
@@ -69,7 +69,8 @@ p{
     color: white;
     font-size: 17px;
 	margin-left: 10px;
-	margin-top: 18px;
+    margin-top: 18px;
+    margin-bottom: 20px;
 }
 #cancel{
 	width: 25%;
@@ -79,8 +80,8 @@ p{
     background: #666666;
     color: #fff;
 	font-size: 18px;
-	margin-top: 140px;
-	margin-left: 10px;
+    margin-left: 10px;
+    
 }
 #cancel:hover{
     background: #a0a0a0;
@@ -92,7 +93,7 @@ p{
 	clip: rect(1px, 1px, 1px, 1px);
 	height: 1px;
 	overflow: hidden;
-	position: absolute;
+    position: absolute;
 	width: 1px;
 }
 .file_select+span
@@ -122,7 +123,14 @@ p{
     width: 300px;
     color: white;
 }
-#errorMessage{
+#errorMessage-path{
+    margin-left: 10px;
+    font-style: italic;
+    color: #fff;
+    font-size: 12px;
+    display: none;
+}
+#errorMessage-name{
     margin-left: 10px;
     font-style: italic;
     color: #fff;

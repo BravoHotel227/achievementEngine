@@ -42,7 +42,7 @@ function createWindow() {
     })*/
     addgameWin = new BrowserWindow({
         width:480,
-        height:370,
+        height:380,
         x: winState.x,      // setting the last postion of the window 
         y: winState.y,      // setting the last postion of the window
         frame: false,
@@ -69,7 +69,7 @@ function createWindow() {
         slashes: true
     }))
     homepageWin.loadURL(url.format ({
-        pathname:path.join(__dirname, './homepage.html'),
+        pathname:path.join(__dirname, 'homePage/homepage.html'),
         protocol: 'file',
         slashes: true
     }))/*
@@ -84,9 +84,9 @@ function createWindow() {
         slashes: true
     }))
 
-    //loginWin.openDevTools();
+    loginWin.openDevTools();
     //homepageWin.openDevTools();
-    addgameWin.openDevTools();
+    //addgameWin.openDevTools();
 
     loginWin.on('close', () => {
         app.quit();
@@ -110,12 +110,6 @@ function createWindow() {
     ipcMain.on('openAddGame', (event) => {
         addgameWin.show();
     })
-    ipcMain.on('addGameUsername', (event, userName) => {
-        addgameWin.webContents.send('addGameUsername', (event, userName));
-    })
-    ipcMain.on('addGameUsername_reload', (event, userName) => {
-        addgameWin.webContents.send('addGameUsername_reload', (event, userName));
-    })
     ipcMain.on('openHomePage', (event) => {
         homepageWin.show();
       //  webpageWin.show();
@@ -125,8 +119,8 @@ function createWindow() {
         homepageWin.hide();
         loginWin.show();
     })
-    ipcMain.on('userLoggedIn', (event, name) => {
-        homepageWin.webContents.send('userLoggedIn', (event, name));
+    ipcMain.on('reload_homepage', (event) => {
+        homepageWin.reload();
     })
 }
 

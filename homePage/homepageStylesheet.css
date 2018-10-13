@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+	padding: 0;
+	font-family: Helvetica;
+}
+.homepage {
+	padding: 0px;
+	margin: 0px;
+ 	background-color: #36393f;
+	border: 1px solid #2D2D30;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+}
+#title-bar {
+	-webkit-app-region: drag;
+ 	height: 30px; 
+ 	padding: 0px;
+ 	margin: 0px; 
+    color: #ADADAD;
+    background-color: #202225;
+    font-family: sans-serif;
+}
+#title-bar-btns {
+	-webkit-app-region: no-drag;
+	position: fixed;
+	top: 1px;
+	right: 0px; 
+}
+#title-bar-btns button {
+	height: 30px;
+	width: 25px;
+	background-color: transparent;
+	border: none;
+	color: #F1F1F1;
+    font-size: 16px;
+    text-align: center;
+}
+#title-bar-btns button:hover {
+	background-color: #3F3F41;
+}
+p{
+    padding: 0;
+    margin: 0;
+    font-weight: bold;    
+}
+input{
+    width: 100%;
+    
+}
+input[type=text]{
+    border: none;
+    color: white;
+    /*border-bottom: 1px solid #fff;*/
+    background: transparent;
+    outline: none;
+	height: 40px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+
+/* Game List */
+.gameSearchField {
+	height:10px;
+	width:200px;
+	background-color:#202225;
+	font-size:10pt;
+	color:white;
+}
+
+#plus {
+   cursor: pointer; 
+}
+.box{
+    height: 30px;
+    background-color: #2a2c31;
+    color: white;
+}
+.scrollbar{
+	float: left;
+	height: 740px;
+	width: 250px;
+	overflow-y: scroll;
+    margin-bottom: 0px;
+    background-color: #2f3136;
+}
+.scrollbar ul{
+	list-style-type: none;
+	color:#d3d3d3;
+}
+.scrollbar li li{
+	margin:5px 5px;
+	padding:5px;
+	cursor:pointer;
+}
+.scrollbar li li:hover {
+	background-color:#36393e;
+}
+.force-overflow{
+	max-height: auto;
+}
+#style-1::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #2f2f33;
+}
+
+#style-1::-webkit-scrollbar{
+	width: 12px;
+	background-color: #2f2f33;
+}
+
+#style-1::-webkit-scrollbar-thumb{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+.gameScroll{
+	position: absolute;
+}
+/* Content */
+.content{
+    height: auto;
+    width: auto;
+    margin-left: 250px;
+    padding-left: 1px;
+    padding-top: 1px;
+}

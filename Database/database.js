@@ -1,5 +1,5 @@
 // script to connect to database and run the user authitcation for login
-document.querySelector('.sqlconnect').addEventListener("click", () => { 
+document.querySelector('.sqlconnect').addEventListener("click", (event) => { 
 var name = document.getElementById('username').value;                             // getting the users input from the login fields
 var passwords = document.getElementById('lastname').value;
     if(name == "Bob" )                                          // compare the users input to the result
@@ -7,8 +7,19 @@ var passwords = document.getElementById('lastname').value;
         if(passwords == "Bobby")                                   // compare the users input to the result
         {
             createHomePage();                                           // create the home page 
-            ipcRenderer.send('userLoggedIn', (event, name));
         }
+        else{
+            var x = document.getElementById("errorMessage-login");
+            x.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+    }
+    else{
+        var x = document.getElementById("errorMessage-login");
+        x.style.display = "block";
+        event.preventDefault();
+        return;
     } 
 /*
 var mysql = require('mysql');               // require the mysql module and asign it to the variable 
@@ -32,7 +43,6 @@ connection.query($sql, [name, passwords], function (error, results, fields) {   
             if(passwords == results[0].password)                                   // compare the users input to the result
             {
                 createHomePage();                                                  // create the home page 
-                ipcRenderer.send('userLoggedIn',(event, name));
             }
         } 
     

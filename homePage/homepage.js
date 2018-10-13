@@ -48,7 +48,7 @@ function searchFunction(){                                        // function to
     }
   }
 }
-
+/*
 document.getElementById("show-content").addEventListener("click", function(e){            // function to show the middle content when a button in the scroll area is pressed
   var x = document.getElementById("hidd-content");
   if(x.style.display === "none"){
@@ -57,17 +57,11 @@ document.getElementById("show-content").addEventListener("click", function(e){  
   else{
     x.style.display = "none";
   }
-})
+})*/
 
-ipcRenderer.on('userLoggedIn', (event, name) => {
-  console.log(name);
-  userN = name;
-})
 
 function addGame(){
   ipcRenderer.send('openAddGame');
-  //console.log("test");
-  ipcRenderer.send('addGameUsername', (event, userN));
 }
 
 
@@ -103,7 +97,7 @@ var mysql = require('mysql');               // require the mysql module and asig
 var connection = mysql.createConnection({   // creating the connection with the database 
   host: '127.0.0.1',
   user: 'root',
-  password: '',
+  password: 'csit115',
   database: 'achievement',
   multipleStatements: true
 });
@@ -111,7 +105,8 @@ var connection = mysql.createConnection({   // creating the connection with the 
 connection.connect();
 
 //$query = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
-$sql = 'SELECT gamename, gamepath FROM gamepaths where username = "Bob"';
+//$sql = 'SELECT gamename, gamepath FROM gamepaths where username = "Bob"';
+$sql = 'SELECT gamename, gamepath FROM gamepaths';
 connection.query($sql, [userN], function(err, rows, fields){
   if(err){
     console.log("An error ocurred performing the query");
