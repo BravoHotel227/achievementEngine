@@ -2,8 +2,9 @@ const electron = require('electron');                 // require all the models 
 //const path = require('path');
 const remote = require('electron').remote;
 const {shell, app, ipcRenderer } = electron;
+const Store = require('electron-store');
+const store = new Store();
 const addwindow = remote.getCurrentWindow();
-var userName;
 
 document.getElementById("min-btn").addEventListener("click", function (e) {     // function to minimize the window
   const window = remote.getCurrentWindow();
@@ -27,18 +28,26 @@ document.addEventListener('DOMContentLoaded', function(){                       
 	});
 });
 
-document.getElementById("input-game").addEventListener("click", function(e){
+document.getElementById("input-game").addEventListener("click", function(e) {
   if(document.getElementById("game-path").files.length == 0 || document.getElementById("game-name").value == ''){
-
+    document.getElementById("gameExistsMessage").style.display = "none";
     if(document.getElementById("game-path").files.length == 0){                         // check if the user has selected the file
-    console.log("error");
+      console.log("error");
       var x = document.getElementById("errorMessage-path");
       x.style.display = "block";
+    }
+    else if(document.getElementById("game-path").files.length > 0){
+      var x = document.getElementById("errorMessage-path");
+      x.style.display = "none";
     }
     if(document.getElementById("game-name").value == ''){
       console.log("error");
       var x = document.getElementById("errorMessage-name");
       x.style.display = "block";
+    }
+    else if(document.getElementById("game-name").value != ''){
+      var x = document.getElementById("errorMessage-name");
+      x.style.display = "none";
     }
     return;
   }
@@ -50,8 +59,6 @@ document.getElementById("input-game").addEventListener("click", function(e){
     alert("Please select a game file...");
     return;
   }
-  console.log(path);
-  console.log(userName);
   var mysql = require('mysql');               // require the mysql module and asign it to the variable 
   var connection = mysql.createConnection({   // creating the connection with the database 
     host: '127.0.0.1',
@@ -63,12 +70,27 @@ document.getElementById("input-game").addEventListener("click", function(e){
 
   connection.connect();
   var gameName = document.getElementById("game-name").value;
-  var gamePath = inputpath
-  connection.query('INSERT INTO GamePaths SET ?', { username: "Bob", gamename: gameName, gamepath: gamePath}, function(error, results, fields){
-    if(error) throw error;
-  })
-  addwindow.reload();
-  ipcRenderer.send('reload_homepage', (event));
-  connection.end();
+  var gamePath = inputpath;
+  $sql = 'SELECT gamename FROM GamePaths WHERE gamename= ?';  // sql select statement to see if the users login details exist in the database 
+  connection.query($sql, [gameName], function (error, results, fields) {
+    console.log(gameName);
+    if(results.length > 0 ){
+      console.log("error");
+      var x = document.getElementById("gameExistsMessage");
+      x.style.display = "block";
+      document.getElementById("game-name").value = '';
+      connection.end();
+      return;
+    }
+    else{
+      const userName = store.get("user-login")
+      connection.query('INSERT INTO GamePaths SET ?', { username: userName, gamename: gameName, gamepath: gamePath}, function(error, results, fields){
+        if(error) throw error;
+      })
+      addwindow.reload();
+      ipcRenderer.send('reload_homepage', (event));
+      connection.end();
+    }
+  });
 }, false);  
 

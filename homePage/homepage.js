@@ -1,6 +1,8 @@
 const electron = require('electron');                 // require all the models needed and assigning them variables 
 const remote = require('electron').remote;
 const {shell, ipcRenderer} = electron;
+const Store = require('electron-store');
+const store = new Store();
 var userN;                                         // name of the user that has logged in
 var pathName;
 
@@ -103,21 +105,23 @@ var connection = mysql.createConnection({   // creating the connection with the 
 });
 
 connection.connect();
-
-//$query = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
+const userN = store.get('user-login');
+const test = store.get('remember-details');
+console.log(test);
+$sql = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
 //$sql = 'SELECT gamename, gamepath FROM gamepaths where username = "Bob"';
-$sql = 'SELECT gamename, gamepath FROM gamepaths';
+//$sql = 'SELECT gamename, gamepath FROM gamepaths';
 connection.query($sql, [userN], function(err, rows, fields){
   if(err){
     console.log("An error ocurred performing the query");
     console.log(err);
     return;
  }
- //if(userN = rows.username){
+ if(userN == rows[0].username){
   callback(rows);
   pathName = rows[0].gamepath;
   console.log(pathName);
- //}
+ }
 });
 connection.end();
 }  

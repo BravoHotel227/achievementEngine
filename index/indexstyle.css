@@ -51,7 +51,7 @@
     
 }
 #loginbox{
-    width: 200px;
+    width: 225px;
     height: 300px;
     background-color: #2D2D31;
     margin-left: auto;
@@ -60,7 +60,8 @@
 }
 p{
     padding: 0;
-    margin: 0;    
+    margin: 0;
+    font-size:15px;     
 }
 input{
     width: 100%;
@@ -75,14 +76,15 @@ input[type=text], input[type="password"]{
     height: 40px;
 }
 .sqlconnect{
-    width: 100%;
-    margin-bottom: 20px;
+    width: 75%;
+    margin: 10px;
     border: none;
     outline: none;
     height: 40px;
     background: #696969;
     color: #fff;
     font-size: 18px;
+    margin-left: 12.5%;
 }
 .sqlconnect:hover{
     cursor: pointer;
@@ -127,4 +129,9 @@ a:hover{
     font-size: 12px;
     display: none;
     padding-top: 5px;
+}
+#remember-acc{
+    position: absolute;   
+    padding-bottom: 10px;
+    
 }

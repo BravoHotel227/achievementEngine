@@ -2,6 +2,8 @@
 const electron = require('electron')
 const{app, BrowserWindow, ipcMain, session} = electron
 const windowStateKeeper = require('electron-window-state');
+const Store = require('electron-store');
+const store = new Store();
 //main process
 const path = require('path')
 const url = require('url')
@@ -37,7 +39,7 @@ function createWindow() {
         height: 800,
         x: winState.x,      // setting the last postion of the window 
         y: winState.y,      // setting the last postion of the window
-        frame: false,
+        frame: true,
         show: false
     })*/
     addgameWin = new BrowserWindow({
@@ -54,14 +56,6 @@ function createWindow() {
     winState.manage(homepageWin);
     winState.manage(addgameWin);
 
-    // Session from new partition 
-    let appSession = session.fromPartition('partition1')
-
-    let defaultSession = session.defaultSession;
-    let mainSession = loginWin.webContents.session
-
-    console.log(mainSession);
-
     //loading the html for the window
     loginWin.loadURL(url.format({
         pathname:path.join(__dirname, 'index/index.html'),    // look for the path of the file
@@ -72,12 +66,9 @@ function createWindow() {
         pathname:path.join(__dirname, 'homePage/homepage.html'),
         protocol: 'file',
         slashes: true
-    }))/*
-    webpageWin.loadURL(url.format ({
-        pathname:path.join(__dirname, 'webpage/webpage.html'),
-        protocol: 'file',
-        slashes: true
-    }))*/
+    }))
+    //webpageWin.loadURL('http://github.com')
+
     addgameWin.loadURL(url.format ({
         pathname:path.join(__dirname, 'addGame/addGame.html'),
         protocol: 'file',
@@ -85,24 +76,27 @@ function createWindow() {
     }))
 
     loginWin.openDevTools();
-    //homepageWin.openDevTools();
-    //addgameWin.openDevTools();
+    homepageWin.openDevTools();
+    addgameWin.openDevTools();
+    //webpageWin.openDevTools();
 
     loginWin.on('close', () => {
         app.quit();
         loginWin = null;
         homepageWin = null;
         addgameWin = null;
+        store.delete('user-login');
     })
     homepageWin.on('closed', () => {        // when the window is closed dereference win
         app.quit();
         homepageWin = null;
         loginWin = null;
         addgameWin = null;
+        store.delete('user-login');
     })
     addgameWin.on('closed', () => {        // when the window is closed dereference win
         addgameWin = null;
-    })  /*
+    }) /* 
     webpageWin.on('closed', () => {        // when the window is closed dereference win
         webpageWin = null;
     })*/
@@ -111,12 +105,15 @@ function createWindow() {
         addgameWin.show();
     })
     ipcMain.on('openHomePage', (event) => {
+        homepageWin.reload();
         homepageWin.show();
-      //  webpageWin.show();
+     // webpageWin.show();
+    
         loginWin.hide();
     })
     ipcMain.on('logout', (event) => {
         homepageWin.hide();
+        loginWin.reload();
         loginWin.show();
     })
     ipcMain.on('reload_homepage', (event) => {

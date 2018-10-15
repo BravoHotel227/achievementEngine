@@ -137,3 +137,10 @@ p{
     font-size: 12px;
     display: none;
 }
+#gameExistsMessage{
+    margin-left: 10px;
+    font-style: italic;
+    color: #fff;
+    font-size: 12px;
+    display: none;
+}

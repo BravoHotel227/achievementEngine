@@ -15,6 +15,7 @@
     bottom: 0px;
     overflow: hidden;
 }
+/* Title bar icons */
 #title-bar {
 	-webkit-app-region: drag;
  	height: 30px; 
@@ -42,6 +43,38 @@
 #title-bar-btns button:hover {
 	background-color: #3F3F41;
 }
+#user-profile{
+	background-color: black;
+	color: white;
+	padding-right: 0px;
+	border: none;
+}
+
+.dropdown{
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content{
+	display: none;
+	position: absolute;
+	background-color: #424242;
+	min-width: 10px;
+	font-size: 12px;
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: #bdbdbd;
+	padding: 10px 20px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {background-color: #696969;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover #user-profile {background-color: grey;}
+
 p{
     padding: 0;
     margin: 0;
