@@ -8,8 +8,6 @@ const store = new Store();
 const {shell, ipcRenderer} = electron
 
 
-
-
   document.getElementById("min-btn").addEventListener("click", function (e) {   // function to minimize the window
     const window = remote.getCurrentWindow();
     window.minimize(); 

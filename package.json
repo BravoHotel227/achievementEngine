@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.1",
     "electron-reload": "^1.2.5",
     "electron-store": "^2.0.0",
     "electron-window-state": "^5.0.1",
