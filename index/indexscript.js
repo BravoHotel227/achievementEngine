@@ -7,7 +7,6 @@ const Store = require('electron-store');
 const store = new Store();
 const {shell, ipcRenderer} = electron
 
-
   document.getElementById("min-btn").addEventListener("click", function (e) {   // function to minimize the window
     const window = remote.getCurrentWindow();
     window.minimize(); 
@@ -19,7 +18,6 @@ const {shell, ipcRenderer} = electron
 
 function createHomePage() {                                                 // function to create the home page 
   const login = document.getElementById('username').value;
-  console.log(login);
   store.set('user-login', login)
   const loginPass = document.getElementById('lastname').value;
   ipcRenderer.send('openHomePage');
@@ -35,21 +33,6 @@ document.getElementById("forgotPass").addEventListener("click", function (e) {  
 document.getElementById("createAcc").addEventListener("click", function (e) {   // link to external website
   shell.openExternal('http://www.achievement-engine.com/website/forgotPassword.php');  
 })
-
-
-  window.addEventListener('online', () => {
-    console.log('User online');
-  })
-  
-  window.addEventListener('offline', () => {
-    console.log('User offline');
-  })
-/*
-document.getElementById("test").addEventListener("click", () =>{
-  var t = "test";
-  ipcRenderer.send("test-data", t);
-});
-*/
 
 function rememberFunction(){
   var checkBox = document.getElementById("remember-acc");

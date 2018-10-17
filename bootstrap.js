@@ -27,21 +27,14 @@ function createWindow() {
         resizable: false,
     })
     homepageWin = new BrowserWindow({
-        width: 1000, 
+        width: 1020, 
         height: 800,
         x: winState.x,      // setting the last postion of the window 
         y: winState.y,      // setting the last postion of the window 
         frame: false,
-        show: false
-    })/*
-    webpageWin = new BrowserWindow({ 
-        width: 1000,
-        height: 800,
-        x: winState.x,      // setting the last postion of the window 
-        y: winState.y,      // setting the last postion of the window
-        frame: true,
-        show: false
-    })*/
+        show: false,
+        resizable: false
+    })
     addgameWin = new BrowserWindow({
         width:480,
         height:380,
@@ -67,7 +60,6 @@ function createWindow() {
         protocol: 'file',
         slashes: true
     }))
-    //webpageWin.loadURL('http://github.com')
 
     addgameWin.loadURL(url.format ({
         pathname:path.join(__dirname, 'addGame/addGame.html'),
@@ -75,9 +67,9 @@ function createWindow() {
         slashes: true
     }))
 
-    loginWin.openDevTools();
-    homepageWin.openDevTools();
-    addgameWin.openDevTools();
+    //loginWin.openDevTools();
+    //homepageWin.openDevTools();
+    //addgameWin.openDevTools();
     //webpageWin.openDevTools();
 
     loginWin.on('close', () => {
@@ -96,10 +88,7 @@ function createWindow() {
     })
     addgameWin.on('closed', () => {        // when the window is closed dereference win
         addgameWin = null;
-    }) /* 
-    webpageWin.on('closed', () => {        // when the window is closed dereference win
-        webpageWin = null;
-    })*/
+    })
 
     ipcMain.on('openAddGame', (event) => {
         addgameWin.show();
@@ -107,8 +96,6 @@ function createWindow() {
     ipcMain.on('openHomePage', (event) => {
         homepageWin.reload();
         homepageWin.show();
-     // webpageWin.show();
-    
         loginWin.hide();
     })
     ipcMain.on('logout', (event) => {

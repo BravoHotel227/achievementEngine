@@ -13,7 +13,14 @@
 	left: 0px;
 	right: 0px;
     bottom: 0px;
-    overflow: hidden;
+	overflow: hidden;
+
+}
+#homepage{
+	background-image: url("../images/trophyLightGrey.png");
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 /* Title bar icons */
 #title-bar {
@@ -153,10 +160,90 @@ input[type=text]{
 	position: absolute;
 }
 /* Content */
-.content{
+#gameName{
+	text-align: left;
+	font-size: 30px;
+	color: #F1F1F1;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+#play-btn{
+	width: auto;
+	height: 70px;
+	/*background-image: linear-gradient(to right,#2f3136, #36393f);*/
+	background-image: linear-gradient(to right,#202225, #2f3136);
+	margin-top: 50px;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+#play-btn button {
+	height: 70px;
+	width: 70px;
+	background-color: transparent;
+	border: none;
+	color: #F1F1F1;
+	font-size: 50x;
+	text-align: center;
+	float: left;
+}
+#play-btn button:hover {
+	background-color: #3F3F41;
+}
+#hidd-content{
     height: auto;
     width: auto;
     margin-left: 250px;
     padding-left: 1px;
-    padding-top: 1px;
+	padding-top: 1px;
+}
+#hidd-friend{
+    height: auto;
+    width: auto;
+    margin-left: 250px;
+    padding-left: 1px;
+	padding-top: 1px;
+}
+#dis-achieve{
+	margin-left: 10px;
+	margin-top: 50px;
+	width: auto;
+	height: auto;
+	background-image: linear-gradient(to right,#202225, #2f3136);
+}
+#launch-game{
+	padding-top: 30px;
+	padding-left: 80px;
+	color: #F1F1F1
+}
+#table-achieve td{ 
+	padding-bottom: 50px;
+	padding-top: 1px;
+	padding-left: 1px;
+	color: #F1F1F1;
+}
+progress{
+	height: 15px;
+	width: 300px;
+	margin-left: 10px;
+	float: right;
+	background-color: #187c24;
+}
+progress::-webkit-progress-bar {
+	background-color: #ADADAD;
+	 border-radius: 2px;
+   }
+   progress::-webkit-progress-value {
+	  border-radius: 2px; 
+   }
+   progress:after {
+	margin-left: 150px;
+	content: attr(value)'/' attr(max);
+  }
+.scrollbar2{
+	
+	height: 547px;
+	width: auto;
+	overflow-y: scroll;
+    margin-bottom: 0px;
+    background-color: #2f3136;
 }

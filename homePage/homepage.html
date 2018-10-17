@@ -3,16 +3,15 @@
         <link rel="stylesheet" href="homepageStylesheet.css"> 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">           
     </head>  
-    <body class="homepage">
+    <body class="homepage" id="homepage">
         <div id="title-bar">
             <div id="title-bar-btns">
                 <!--<button id="show-content">show</button>-->
                 <div class="dropdown">
                     <button id="user-profile" class="fas fa-user-circle"></button>
                     <div class="dropdown-content">
-                        <a href='../webpage/webpage.html'>Profile</a>
-                        <a href="#">Friends</a>
-                        <a href="www.youtube.com.au">YouTube</a>
+                        <a href='#' id="profile">Profile</a>
+                        <a href="#" id="friends">Friends</a>
                     </div>
                 </div>
                 
@@ -38,10 +37,30 @@
                 <div class="force-overflow"></div>      
             </div>
         </div>
-        <div id="hidd-content" class="content">
-            <button id="launch-app">launch game</button>
-        </div>
-        
+        <div id="hidd-content" class="content" style="display: none">
+            <div id="gameName">
+
+            </div>
+            <div id="play-btn">
+                 
+                <button id="launch-app" class="far fa-play-circle fa-4x"></button>
+                <div id="launch-game">
+                    Launch game
+                </div>
+            </div>
+
+            <div id="dis-achieve" >
+                <div class="scrollbar2" id="style-1">
+                <table id="table-achieve">
+                    <tbody>
+                
+                    </tbody>
+                </table>
+                <div class="force-overflow"></div>
+                </div>
+            </div>    
+        </div>       
         <script src="homepage.js"></script>
+        <script src="homepageAchieve.js"></script>
     </body>
 </html>

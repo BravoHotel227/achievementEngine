@@ -28,13 +28,6 @@ document.getElementById("close-btn").addEventListener("click", function (e) {   
   const window = remote.getCurrentWindow();
   window.close();
 });  
-/*
-var steamLink = "E:\\SteamLibrary\\steamapps\\common\\"                         // function to launch games
-document.getElementById("launch-app").addEventListener("click", function (e) {
-  shell.openItem( steamLink + "No Man's Sky\\Binaries\\NMS.exe"); 
-});*/
-//ipcRenderer.on('recieveName', (event, name) => {
-//console.log(name);
 
 function searchFunction(){                                        // function to search the game library 
   var input, filter, ul, li, a, i;
@@ -50,74 +43,52 @@ function searchFunction(){                                        // function to
     }
   }
 }
-/*
-document.getElementById("show-content").addEventListener("click", function(e){            // function to show the middle content when a button in the scroll area is pressed
-  var x = document.getElementById("hidd-content");
-  if(x.style.display === "none"){
-    x.style.display = "block";
-  }
-  else{
-    x.style.display = "none";
-  }
-})*/
 
-
-function addGame(){
+function addGame(){                                   // tell app to open add game window
   ipcRenderer.send('openAddGame');
 }
 
-
-function loadgamelist(){
+function loadgamelist(){                              // to load the game list on window start
 getRows(function(rows){
   var html = '';
 
-  rows.forEach(function(row){
-    html += '<li>';
+  rows.forEach(function(row){                         // for each row returned from the query add it to the list
+    html += '<li id="';
+    html += row.gamename;
+    html +=  '" onclick="showgame(this.id)'
+    html += '">';
     html += row.gamename;
     html += '</li>';
     console.log(row);
+    store.set(row.gamename, row.gamepath)
   });
 
   document.querySelector('#list > li').innerHTML = html;
 });
 }
 window.onload = loadgamelist;
-/*
-document.getElementById("test").addEventListener("click", function(e){
-  console.log('Test');
-  var x = document.getElementById("hidd-content");
-  if(x.style.display === "none"){
-    x.style.display = "block";
-  }
-  else{
-    x.style.display = "none";
-  }
-});*/
 
 function getRows(callback){
 var mysql = require('mysql');               // require the mysql module and asign it to the variable 
 var connection = mysql.createConnection({   // creating the connection with the database 
   host: '127.0.0.1',
   user: 'root',
-  password: 'csit115',
+  password: '',
   database: 'achievement',
   multipleStatements: true
 });
 
 connection.connect();
-const userN = store.get('user-login');
+const userN = store.get('user-login');          // get the details of who is logged in 
 const test = store.get('remember-details');
-console.log(test);
 $sql = 'SELECT username, gamename, gamepath FROM gamepaths WHERE username = ?';
-//$sql = 'SELECT gamename, gamepath FROM gamepaths where username = "Bob"';
-//$sql = 'SELECT gamename, gamepath FROM gamepaths';
 connection.query($sql, [userN], function(err, rows, fields){
   if(err){
     console.log("An error ocurred performing the query");
     console.log(err);
     return;
  }
- if(userN == rows[0].username){
+ if(userN == rows[0].username){               // if the user logged in matches game owners in the database 
   callback(rows);
   pathName = rows[0].gamepath;
   console.log(pathName);
@@ -126,8 +97,27 @@ connection.query($sql, [userN], function(err, rows, fields){
 connection.end();
 }  
                        
-document.getElementById("launch-app").addEventListener("click", function (e) {        // function to launch games
-  shell.openItem( pathName); 
+function showgame(gameName){                          // function to show each game's content
+ const window = remote.getCurrentWindow();
+ var x = document.getElementById("hidd-content");     // hide previous content loaded in the content section 
+ var y = document.getElementById("hidd-friend");
+ var z = document.getElementById("homepage");
+  x.style.display = "block";
+  y.style.display = "none";
+  z.style.backgroundImage = 'url("")';
+  showAchieve(store.get('user-login'), gameName);
+
+  document.getElementById("launch-app").addEventListener("click", function (e) {  // run the game selected
+    shell.openItem(store.get(gameName)); 
+    window.reload(); 
+  });
+}
+
+document.getElementById("profile").addEventListener("click", function (e) {       // navigate to the profile on the website 
+  console.log('test');
+  shell.openExternal('http://achievement-engine.com/website/profile.php');
 });
 
-//});
+document.getElementById("friends").addEventListener("click", function (e) {       // navigate to the message system on the website 
+  shell.openExternal('http://achievement-engine.com/website/messages.php');
+});
