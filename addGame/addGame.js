@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){                       
 	var file_select = document.getElementsByClassName('file_select')[0];
 	
 	file_select.addEventListener('change', function(){                                  // shows the file name of the selected path
-		this.nextElementSibling.setAttribute('data-file', this.value);
+    this.nextElementSibling.setAttribute('data-file', this.value); 
 	});
 });
 

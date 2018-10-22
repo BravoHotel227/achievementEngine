@@ -29,4 +29,5 @@ connection.query($sql, [name, passwords], function (error, results, fields) {   
             x.style.display = "block";
         }                                      // alet user for incorrect login details    
 })                                                             // end the connection 
+connection.end();
 }, false);

@@ -68,7 +68,7 @@ function createWindow() {
     }))
 
     //loginWin.openDevTools();
-    //homepageWin.openDevTools();
+    homepageWin.openDevTools();
     //addgameWin.openDevTools();
     //webpageWin.openDevTools();
 

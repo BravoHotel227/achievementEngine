@@ -30,7 +30,7 @@ function showAchieve(userName, gameName){
         });
         connection.connect();
         console.log("connected");
-        $sql = 'SELECT username, gamename, achStr, progress, datetime, gameStr, achName, achValue FROM uachievement WHERE username = ? && gamename = ?';
+        $sql = 'SELECT username, gamename, achStr, progress, datetime,gameStr, achName, achValue FROM uachievement WHERE username = ? && gamename = ?';
         connection.query($sql, [userName, gameName], function(err, rows, fields){
             if(err){
               console.log("An error ocurred performing the query");

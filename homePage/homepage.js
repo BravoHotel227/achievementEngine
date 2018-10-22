@@ -100,10 +100,8 @@ connection.end();
 function showgame(gameName){                          // function to show each game's content
  const window = remote.getCurrentWindow();
  var x = document.getElementById("hidd-content");     // hide previous content loaded in the content section 
- var y = document.getElementById("hidd-friend");
  var z = document.getElementById("homepage");
   x.style.display = "block";
-  y.style.display = "none";
   z.style.backgroundImage = 'url("")';
   showAchieve(store.get('user-login'), gameName);
 
