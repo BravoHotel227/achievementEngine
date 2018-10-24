@@ -22,7 +22,7 @@ function showAchieve(userName, gameName){
   function getRows(callback){
         var mysql = require('mysql');               // require the mysql module and asign it to the variable 
         var connection = mysql.createConnection({   // creating the connection with the database 
-        host: '127.0.0.1',
+        host: 'localhost',
         user: 'root',
         password: '',
         database: 'achievement',

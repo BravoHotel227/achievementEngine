@@ -14,9 +14,9 @@ connection.connect();                                                           
 var name = document.getElementById('username').value;                             // getting the users input from the login fields
 console.log(name);
 var passwords = document.getElementById('lastname').value;
-$sql = 'SELECT * FROM `user` where `username` = ? && `password` = ?';  // sql select statement to see if the users login details exist in the database 
+$sql = 'SELECT * FROM `user` where `username` = ?';  // sql select statement to see if the users login details exist in the database 
 
-connection.query($sql, [name, passwords], function (error, results, fields) {     // assign the selected values to results                                           
+connection.query($sql, [name], function (error, results, fields) {     // assign the selected values to results                                           
     console.log(results);
     if(error){
         console.log(error.message);
